@@ -1,0 +1,37 @@
+[
+    {
+      "id": 1,
+      "name": "Boulderklub",
+      "long": 13.4261203,
+      "lat": 52.4951399,
+      "address": "Ohlauer Str. 38, 10999 Berlin"
+    },
+    {
+      "id": 2,
+      "name": "Bouldergarten",
+      "long": 13.446561,
+      "lat": 52.4794075,
+      "address": "Thiemannstraße 1 Tor 4/2. HH, 12059 Berlin"
+    },
+    {
+      "id": 3,
+      "name": "Basement",
+      "long": 13.3816597,
+      "lat": 52.5036269,
+      "address": "Stresemannstraße 72, 10963 Berlin"
+    },
+    {
+      "id": 4,
+      "name": "Der Kegel",
+      "long": 13.4518898,
+      "lat": 52.5071382,
+      "address": "Revaler Str. 99, 10245 Berlin"
+    },
+    {
+      "id": 5,
+      "name": "Ostbloc Boulderhalle",
+      "long": 13.4883836,
+      "lat": 52.4912363,
+      "address": "Hauptstraße 13, 10317 Berlin"
+    }    
+  ]
