@@ -24,7 +24,7 @@ input {
     gap: 6px;
 }
 
-.add-button {
+button {
   border-radius: 8px;
   border: 1px solid;
   background-color: white;
@@ -32,7 +32,7 @@ input {
   cursor: pointer;
 }
 
-.add-button:hover{
+button:hover{
     background-color: black;
     color: white;
 }

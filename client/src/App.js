@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from 'react';
+import { Routes, Route } from "react-router-dom";
 import BerlinWeatherCard from './components/Weather/BerlinWeatherCard';
 import BerlinMap from './components/Map/BerlinMap';
 import WikiArticle from './components/WikiArticle/WikiArticle';
@@ -7,25 +8,30 @@ import RandomCountry from './components/RandomCountry/RandomCountry';
 import Sidebar from './components/Sidebar/Sidebar';
 import TodoCard from './components/TodoList/TodoCard';
 
-
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const handleHomeClick = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  const handleHomeIconClick = () => setIsSidebarOpen(!isSidebarOpen);
 
   return (
     <div className="app-container">
-      <div className="sticky-sidebar"><Sidebar onHomeClick={handleHomeClick} isSidebarOpen={isSidebarOpen} /></div>
+      <Sidebar onHomeClick={handleHomeIconClick} isSidebarOpen={isSidebarOpen} />
       <div className={`container ${isSidebarOpen ? 'content-shifted' : ''}`}> 
-        <div className="item-weather"><BerlinWeatherCard /></div>
-        <div className="item-map"><BerlinMap /></div>
-        <div className="item-country"><RandomCountry /></div>
-        <div className="item-wiki"><WikiArticle /></div>
-        <div className="item-wiki"><TodoCard /></div>
+      <Home />
       </div>
     </div>
+  );
+};
+
+function Home() {
+  return (
+    <>
+      <div className="item-weather"><BerlinWeatherCard /></div>
+      <div className="item-map"><BerlinMap /></div>
+      <div className="item-country"><RandomCountry /></div>
+      <div className="item-wiki"><WikiArticle /></div>
+      <div className="item-todo"><TodoCard /></div>
+    </>
   );
 }
 
