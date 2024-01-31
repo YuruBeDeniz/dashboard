@@ -28,7 +28,7 @@ export default function Sidebar({ onHomeClick, isSidebarOpen }) {
   
 
   return (
-    <div className="sticky-sidebar">
+    <div className={`sticky-sidebar ${isSidebarOpen ? 'sidebar-open' : ''}`}>
       <div className={`sidebar-wrapper ${isSidebarOpen ? 'sidebar-open' : ''}`}>
         <div className="home-icon-wrapper">
         <HiHome className="home-icon" onClick={handleHomeIconClick} />
@@ -51,9 +51,19 @@ export default function Sidebar({ onHomeClick, isSidebarOpen }) {
           </>
         }
       </div>
-      <button onClick={handleLoginPopup}>Login</button>
-      {showLoginPopup && <LoginPopup onSignupClick={handleSignupPopup} />}
-      {showSignupPopup && <SignupPopup />}
+      <span className='sidebar-login-span' onClick={handleLoginPopup}>Login</span>
+      {showLoginPopup && 
+       <>
+        <div className="popup-overlay" onClick={() => setShowLoginPopup(false)}></div>
+        <LoginPopup onSignupClick={handleSignupPopup} />
+       </> 
+      }
+      {showSignupPopup && 
+       <>
+       <div className="popup-overlay" onClick={() => setShowSignupPopup(false)}></div>
+        <SignupPopup /> 
+       </>
+      }
     </div>
   );
 }

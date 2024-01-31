@@ -20,3 +20,10 @@
     gap: 4px;
     margin-bottom: 16px;
 }
+
+.signup-span {
+    cursor: pointer;
+    font-size: medium;
+    font-weight: 500;
+    color: rgb(41, 13, 19);
+}

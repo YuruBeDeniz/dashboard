@@ -25,7 +25,7 @@ export default function LoginPopup({ onSignupClick }: LoginPopupProps) {
               <button>Login</button>
             </div>
             <div>
-                <p>Don't you have an account? <button onClick={onSignupClick}>Signup</button></p> 
+                <p>Don't you have an account? <span className='signup-span' onClick={onSignupClick}>Signup</span></p> 
             </div>
         </form>
     </div>
