@@ -61,7 +61,7 @@ export default function Sidebar({ onHomeClick, isSidebarOpen }) {
       {showSignupPopup && 
        <>
        <div className="popup-overlay" onClick={() => setShowSignupPopup(false)}></div>
-        <SignupPopup /> 
+        <SignupPopup onLoginClick={handleLoginPopup} /> 
        </>
       }
     </div>

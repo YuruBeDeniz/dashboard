@@ -22,7 +22,7 @@ export default function LoginPopup({ onSignupClick }: LoginPopupProps) {
               <input type='text' value={name} onChange={handleName}/>
               <label>Password</label>
               <input type='password' value={password} onChange={handlePassword}/>
-              <button>Login</button>
+              <button className='login-button'>Login</button>
             </div>
             <div>
                 <p>Don't you have an account? <span className='signup-span' onClick={onSignupClick}>Signup</span></p> 

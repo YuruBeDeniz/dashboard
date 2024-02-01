@@ -20,3 +20,16 @@
     gap: 4px;
     margin-bottom: 16px;
 }
+
+.signup-button {
+    background-color: rgb(224, 146, 145);
+}
+
+.signupPopup-login-span {
+    cursor: pointer;
+    font-size: medium;
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: center;
+}

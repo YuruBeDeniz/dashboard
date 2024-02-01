@@ -1,7 +1,11 @@
 import { ChangeEvent, useState } from 'react';
 import './index.css';
 
-export default function SignupPopup() {
+type SignupPopupProps = {
+    onLoginClick: () => void;
+} 
+
+export default function SignupPopup({ onLoginClick }: SignupPopupProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,12 +25,10 @@ export default function SignupPopup() {
               <input type='email' value={email} onChange={handleEmail}/>
               <label>Password</label>
               <input type='password' value={password} onChange={handlePassword}/>
-              <button>Signup</button>
-            </div>
-            <div>
-                <button>Go to login!</button>
+              <button className='signup-button'>Signup</button>
             </div>
         </form>
+        <span className='signupPopup-login-span' onClick={onLoginClick}>Go to login!</span>
     </div>
   )
 }
