@@ -1,12 +1,14 @@
-require('dotenv').config();
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-require("./db");
+import './db';
 
-import express = require('express');
+import express from 'express';
 
 const app = express();
 
-const allRoutes = require("./routes/index.routes");
+
+import allRoutes from './routes/index.routes';
 app.use("/api", allRoutes);
 
-export = app;
+export default app;
