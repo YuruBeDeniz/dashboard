@@ -10,6 +10,7 @@ export default function SignupPopup({ onLoginClick }: SignupPopupProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
  
   const handleName = (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value);
   const handlePassword = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
@@ -23,7 +24,7 @@ export default function SignupPopup({ onLoginClick }: SignupPopupProps) {
         console.log("response from backend", response)
         onLoginClick();
       })
-      .catch(err => console.log(err))
+      .catch(err => setErrorMessage(err.response.data.message))
   }
   
  
@@ -40,6 +41,7 @@ export default function SignupPopup({ onLoginClick }: SignupPopupProps) {
               <button className='signup-button'>Signup</button>
             </div>
         </form>
+        {errorMessage && <h3 style={{textAlign: "center"}}>{errorMessage}!!</h3>}
         <span className='signupPopup-login-span' onClick={onLoginClick}>Go to login!</span>
     </div>
   )
