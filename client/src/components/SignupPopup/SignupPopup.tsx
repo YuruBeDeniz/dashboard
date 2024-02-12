@@ -1,5 +1,6 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, SyntheticEvent, useState } from 'react';
 import './index.css';
+import axios from 'axios';
 
 type SignupPopupProps = {
     onLoginClick: () => void;
@@ -13,11 +14,22 @@ export default function SignupPopup({ onLoginClick }: SignupPopupProps) {
   const handleName = (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value);
   const handlePassword = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
   const handleEmail = (e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
+
+  const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const requestBody = { name, email, password }
+    axios.post("/api/auth/signup", requestBody)
+      .then(response => {
+        console.log("response from backend", response)
+        onLoginClick();
+      })
+      .catch(err => console.log(err))
+  }
   
  
   return (
     <div className='signup-popup'>
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className='signup-info'>
               <label>Name</label>
               <input type='text' value={name} onChange={handleName}/>
