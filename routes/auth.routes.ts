@@ -1,8 +1,8 @@
 import express, { Request, Response, NextFunction } from 'express';
-import User from '../models/User';
+import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { isAuthenticated } from '../middlewares/jwt';
+import { isAuthenticated } from '../middlewares/jwt.js';
 
 const router = express.Router();
 
@@ -80,12 +80,12 @@ router.post("/login", (req: Request, res: Response, next: NextFunction) => {
       })
 });
 
-/* router.get('/verify', isAuthenticated, (req: Request, res: Response, next: NextFunction) => {
+router.get('/verify', isAuthenticated, (req: Request, res: Response, next: NextFunction) => {
     console.log("Payload in /verify:", req.payload);
     if (!req.payload) {
         return res.status(401).json({ message: "Unauthorized" });
     }
     res.status(200).json(req.payload);
-}); */
+});
 
 export default router;

@@ -11,7 +11,7 @@ const getTokenFromHeaders = (req: Request): string | undefined => {
 };
 
 const isAuthenticated = jwt({
-  secret: process.env.JWT_SECRET as string, 
+  secret: import.meta.env.VITE_JWT_SECRET as string, 
   algorithms: ['HS256'],
   requestProperty: 'payload', 
   getToken: getTokenFromHeaders, 

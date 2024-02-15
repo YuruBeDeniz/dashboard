@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/dashboard";
+const MONGO_URI = import.meta.env.VITE_MONGODB_URI || "mongodb://localhost/dashboard";
 
 mongoose
   .connect(MONGO_URI)

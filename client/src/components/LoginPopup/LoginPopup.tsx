@@ -25,6 +25,7 @@ export default function LoginPopup({ onSignupClick }: LoginPopupProps) {
       .then(response => {
         console.log(response.data);
         navigate("/");
+        axios.get("/api/auth/verify", { headers: { Authorization: `Bearer ${response.data.authToken}` } })
       })
       .catch(err => setErrorMessage(err.response.data.message));
   }
