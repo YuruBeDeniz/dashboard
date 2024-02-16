@@ -64,7 +64,7 @@ router.post("/login", (req: Request, res: Response, next: NextFunction) => {
 
             const authToken = jwt.sign(
                 payload,
-                process.env.JWT_SECRET as string,
+                import.meta.env.VITE_JWT_SECRET as string,
                 { algorithm: "HS256", expiresIn: "24h" }
             );
             res.status(200).json({ authToken: authToken });        
@@ -81,10 +81,6 @@ router.post("/login", (req: Request, res: Response, next: NextFunction) => {
 });
 
 router.get('/verify', isAuthenticated, (req: Request, res: Response, next: NextFunction) => {
-    console.log("Payload in /verify:", req.payload);
-    if (!req.payload) {
-        return res.status(401).json({ message: "Unauthorized" });
-    }
     res.status(200).json(req.payload);
 });
 

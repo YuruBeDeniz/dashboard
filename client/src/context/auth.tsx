@@ -11,9 +11,18 @@ type AuthContextType  = {
   storeToken: (token: string) => void;
   verifyStoredToken: () => void;
   logoutUser: () => void;
+};
+
+export const AuthContextDefaults: AuthContextType  = {
+  isLoggedIn: false,
+  isLoading: false,
+  user: null,
+  storeToken: (token: string) => null,
+  verifyStoredToken: () => null,
+  logoutUser: () => null,
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextType>(AuthContextDefaults);
 
 type AuthProviderWrapperProps = {
   children: ReactNode; 

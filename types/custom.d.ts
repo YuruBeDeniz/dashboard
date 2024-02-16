@@ -1,4 +1,5 @@
 import { Request } from 'express';
+import 'vite/client';
 
 declare global {
   namespace Express {

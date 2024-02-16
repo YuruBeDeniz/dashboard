@@ -1,17 +1,21 @@
-import { ChangeEvent, SyntheticEvent, useState } from 'react';
+import { ChangeEvent, SyntheticEvent, useState, useContext } from 'react';
 import './index.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/auth';
 
 
 type LoginPopupProps = {
     onSignupClick: () => void;
+    closeLoginPopup: () => void;
 }
 
-export default function LoginPopup({ onSignupClick }: LoginPopupProps) {
+export default function LoginPopup({ onSignupClick, closeLoginPopup }: LoginPopupProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  const { storeToken, verifyStoredToken } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -23,9 +27,11 @@ export default function LoginPopup({ onSignupClick }: LoginPopupProps) {
     const requestBody = { email, password }
     axios.post("/api/auth/login", requestBody)
       .then(response => {
-        console.log(response.data);
-        navigate("/");
-        axios.get("/api/auth/verify", { headers: { Authorization: `Bearer ${response.data.authToken}` } })
+        const token = response.data.authToken;
+        storeToken(token);
+        verifyStoredToken();
+        closeLoginPopup();
+        navigate("/profile");
       })
       .catch(err => setErrorMessage(err.response.data.message));
   }

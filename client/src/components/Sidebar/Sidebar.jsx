@@ -1,15 +1,22 @@
 import './index.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { AuthContext } from '../../context/auth';
 import { HiHome } from "react-icons/hi";
 import { HiOutlineClipboard } from "react-icons/hi";
 import { HiUserCircle } from "react-icons/hi";
 import { HiOutlineCog } from "react-icons/hi";
 import LoginPopup from '../LoginPopup/LoginPopup';
 import SignupPopup from '../SignupPopup/SignupPopup';
+import { capitalizeWords } from '../../utilities/capitalizeWords';
 
 export default function Sidebar({ onHomeClick, isSidebarOpen }) {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [showSignupPopup, setShowSignupPopup] = useState(false);
+
+  const { user } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const handleLoginPopup = () => {
     setShowLoginPopup(!showLoginPopup);
@@ -23,8 +30,14 @@ export default function Sidebar({ onHomeClick, isSidebarOpen }) {
     setShowLoginPopup(false);
   };
   
+  const closeLoginPopup = () => setShowLoginPopup(false);
+  const closeSignupPopup = () => setShowSignupPopup(false);
 
-  const handleHomeIconClick = () => onHomeClick(!isSidebarOpen);
+
+  const handleHomeIconClick = () => {
+    onHomeClick(!isSidebarOpen);
+    navigate("/");
+  };
   
 
   return (
@@ -38,7 +51,7 @@ export default function Sidebar({ onHomeClick, isSidebarOpen }) {
           <>  
             <div className="user-icon-wrapper">
             <HiUserCircle className="user-icon" />
-            <p>Jane Doe</p>
+            <Link to="/profile" style={{"textDecoration": "none"}}>{capitalizeWords(user.name)}</Link>
             </div>
             <div className="documents-icon-wrapper">
             <HiOutlineClipboard className="documents-icon" />
@@ -54,13 +67,13 @@ export default function Sidebar({ onHomeClick, isSidebarOpen }) {
       <span className='sidebar-login-span' onClick={handleLoginPopup}>Login</span>
       {showLoginPopup && 
        <>
-        <div className="popup-overlay" onClick={() => setShowLoginPopup(false)}></div>
-        <LoginPopup onSignupClick={handleSignupPopup} />
+        <div className="popup-overlay" onClick={closeLoginPopup}></div>
+        <LoginPopup onSignupClick={handleSignupPopup} closeLoginPopup={closeLoginPopup} />
        </> 
       }
       {showSignupPopup && 
        <>
-       <div className="popup-overlay" onClick={() => setShowSignupPopup(false)}></div>
+       <div className="popup-overlay" onClick={closeSignupPopup}></div>
         <SignupPopup onLoginClick={handleLoginPopup} /> 
        </>
       }

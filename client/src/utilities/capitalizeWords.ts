@@ -1,0 +1,1 @@
+export const capitalizeWords = (str: string) => str.replace(/^(.)|\s+(.)/g, (c) => c.toUpperCase())

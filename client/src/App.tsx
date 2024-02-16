@@ -7,6 +7,7 @@ import WikiArticle from './components/WikiArticle/WikiArticle';
 import RandomCountry from './components/RandomCountry/RandomCountry';
 import Sidebar from './components/Sidebar/Sidebar';
 import TodoCard from './components/TodoList/TodoCard';
+import Profile from './components/Profile/Profile';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -17,7 +18,10 @@ function App() {
     <div className="app-container">
       <Sidebar onHomeClick={handleHomeIconClick} isSidebarOpen={isSidebarOpen} />
       <div className={`container ${isSidebarOpen ? 'content-shifted' : ''}`}> 
-      <Home />
+      <Routes>
+        <Route path='/' element={<Home />}/>
+        <Route path='/profile' element={<Profile />}/>
+      </Routes>
       </div>
     </div>
   );
