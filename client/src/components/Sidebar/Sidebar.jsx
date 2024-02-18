@@ -49,10 +49,12 @@ export default function Sidebar({ onHomeClick, isSidebarOpen }) {
         </div>
         {isSidebarOpen && 
           <>  
+          {user &&
             <div className="user-icon-wrapper">
-            <HiUserCircle className="user-icon" />
-            <Link to="/profile" style={{"textDecoration": "none"}}>{capitalizeWords(user.name)}</Link>
+              <HiUserCircle className="user-icon" />
+              <Link to="/profile" style={{"textDecoration": "none"}}>{capitalizeWords(user.name)}</Link>
             </div>
+          }
             <div className="documents-icon-wrapper">
             <HiOutlineClipboard className="documents-icon" />
             <p>Documents</p>

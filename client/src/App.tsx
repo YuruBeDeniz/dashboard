@@ -1,6 +1,7 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Routes, Route } from "react-router-dom";
+import { AuthContext } from './context/auth';
 import BerlinWeatherCard from './components/Weather/BerlinWeatherCard';
 import BerlinMap from './components/Map/BerlinMap';
 import WikiArticle from './components/WikiArticle/WikiArticle';
@@ -12,6 +13,8 @@ import Profile from './components/Profile/Profile';
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  const { user } = useContext(AuthContext);
+
   const handleHomeIconClick = () => setIsSidebarOpen(!isSidebarOpen);
 
   return (
@@ -20,7 +23,9 @@ function App() {
       <div className={`container ${isSidebarOpen ? 'content-shifted' : ''}`}> 
       <Routes>
         <Route path='/' element={<Home />}/>
-        <Route path='/profile' element={<Profile />}/>
+        {user &&
+          <Route path='/profile' element={<Profile />}/>
+        }
       </Routes>
       </div>
     </div>
