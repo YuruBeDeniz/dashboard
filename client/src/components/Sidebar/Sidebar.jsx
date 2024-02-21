@@ -14,7 +14,7 @@ export default function Sidebar({ onHomeClick, isSidebarOpen }) {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [showSignupPopup, setShowSignupPopup] = useState(false);
 
-  const { user } = useContext(AuthContext);
+  const { user, isLoggedIn, logoutUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -66,7 +66,9 @@ export default function Sidebar({ onHomeClick, isSidebarOpen }) {
           </>
         }
       </div>
-      <span className='sidebar-login-span' onClick={handleLoginPopup}>Login</span>
+      {isLoggedIn 
+        ? <span className='sidebar-login-span' onClick={logoutUser}>Logout</span>
+        : <span className='sidebar-login-span' onClick={handleLoginPopup}>Login</span>}
       {showLoginPopup && 
        <>
         <div className="popup-overlay" onClick={closeLoginPopup}></div>

@@ -3,7 +3,7 @@ import { AuthContext } from '../../context/auth';
 import { capitalizeWords } from '../../utilities/capitalizeWords';
 
 export default function Profile() {
-  const { user, isLoading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   if (!user) {
     return <div>Loading user information...</div>;

@@ -59,6 +59,7 @@ router.post("/login", (req: Request, res: Response, next: NextFunction) => {
 
         const isPasswordCorrect = bcrypt.compareSync(password, foundUser.password);
         if(isPasswordCorrect) {
+            
             const { name, _id } = foundUser;
             const payload = { name, _id };
 
